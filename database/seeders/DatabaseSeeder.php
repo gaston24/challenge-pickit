@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
         DB::statement("SET foreign_key_checks=0");
         $this->call([
             CarsSeeder::class,
+            OwnerSeeder::class,
         ]);
 
         DB::statement("SET foreign_key_checks=1");

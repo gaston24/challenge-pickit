@@ -5,20 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Car extends Model
+class Owner extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'marca',
-        'modelo',
-        'anio',
-        'patente',
-        'color',
+        'apellido',
+        'nombre',
     ];
 
-    // public function cars()
+    // public function owners()
     // {
-    //     return $this->hasMany('App\Car');
+    //     return $this->belongsTo('App\Owner');
     // }
 }
