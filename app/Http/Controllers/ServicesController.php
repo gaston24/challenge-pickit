@@ -27,6 +27,7 @@ class ServicesController extends BaseController
         $serviceUpdate = Service::find($id);
 
         $serviceUpdate['descripcion'] = $request->descripcion;
+        $serviceUpdate['costo'] = $request->costo;
 
         try {
             $serviceUpdate->update();
@@ -41,6 +42,7 @@ class ServicesController extends BaseController
     public function store(Request $request){
         $form = [
             'descripcion' => $request->descripcion,
+            'costo' => $request->costo,
         ];
 
         

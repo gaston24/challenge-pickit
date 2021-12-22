@@ -17,6 +17,7 @@ class CreateServices extends Migration
             $table->id();
 
             $table->string('descripcion');
+            $table->float('costo');
 
             $table->timestamps();
         });

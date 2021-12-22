@@ -19,26 +19,31 @@ class ServicesSeeder extends Seeder
         $services = array(
             [
             'descripcion' => 'Cambio de Aceite',
+            'costo' => 1234,
             'created_at' => $now,
             'updated_at' => $now
             ], 
             [
             'descripcion' => 'Cambio de Filtro',
+            'costo' => 2345,
             'created_at' => $now,
             'updated_at' => $now
             ], 
             [
             'descripcion' => 'Cambio de Correa',
+            'costo' => 3456,
             'created_at' => $now,
             'updated_at' => $now
             ], 
             [
             'descripcion' => 'Revisión General',
+            'costo' => 4567,
             'created_at' => $now,
             'updated_at' => $now
             ], 
             [
             'descripcion' => 'Otro',
+            'costo' => 1,
             'created_at' => $now,
             'updated_at' => $now
             ], 

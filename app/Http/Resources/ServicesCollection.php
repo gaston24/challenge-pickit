@@ -21,6 +21,7 @@ class ServicesCollection extends JsonResource
         return [
             'id' => $this->id ? $this->id : "",
             'descripcion' => $this->descripcion ? $this->descripcion : "",
+            'costo' => $this->costo ? $this->costo : "",
         ];
     }
 }
