@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,6 +14,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        \App\Models\User::factory(10)->create();
+        DB::statement("SET foreign_key_checks=0");
+        $this->call([
+            CarsSeeder::class,
+        ]);
+
+        DB::statement("SET foreign_key_checks=1");
     }
 }
