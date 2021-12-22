@@ -14,8 +14,8 @@ class Owner extends Model
         'nombre',
     ];
 
-    // public function owners()
-    // {
-    //     return $this->belongsTo('App\Owner');
-    // }
+    public function cars()
+    {
+        return $this->hasMany('App\Car');
+    }
 }

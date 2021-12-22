@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Http\Resources\OwnersCollection;
 use App\Models\Owner;
+use Illuminate\Support\Facades\Log;
 
 class OwnerController extends BaseController
 {
@@ -12,7 +13,8 @@ class OwnerController extends BaseController
         
         try {
             $data =  Owner::all();
-            return $this->sendResponse(true, $data, "List owners");
+            $collection = OwnersCollection::collection($data);
+            return $this->sendResponse(true, $collection, "List owners");
         } catch (\Throwable $th) {
             return $this->sendResponse(false, $th, "Error");
         }
@@ -31,6 +33,7 @@ class OwnerController extends BaseController
             $ownerUpdate->update();
             return $this->sendResponse(true, $ownerUpdate, 'The owner has been updated successfully');
         } catch (\Throwable $th) {
+            Log::warning($th);
             return $this->sendResponse(false, $th, "Error");
         }
 
@@ -47,6 +50,7 @@ class OwnerController extends BaseController
             $model = Owner::create($form);
             return $this->sendResponse(true, $model->id, 'The owner has been created successfully');
         } catch (\Throwable $th) {
+            Log::warning($th);
             return $this->sendResponse(false, $th, "Error");
         }
     }
@@ -55,7 +59,8 @@ class OwnerController extends BaseController
 
         try {
             $data =  Owner::find($id);
-            return $this->sendResponse(true, $data, "Show the owner with id: $id");
+            $collection = new OwnersCollection($data);
+            return $this->sendResponse(true, $collection, "Show the owner with id: $id");
         } catch (\Throwable $th) {
             return $this->sendResponse(false, $th, "Error");
         }
@@ -67,6 +72,7 @@ class OwnerController extends BaseController
             $owner->delete();
             return $this->sendResponse(true, "The owner has been deleted", 200);
         } catch (\Throwable $th) {
+            Log::warning($th);
             return $this->sendResponse(false, $th, "Error");
         }
         

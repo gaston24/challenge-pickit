@@ -15,10 +15,11 @@ class Car extends Model
         'anio',
         'patente',
         'color',
+        'owner_id',
     ];
 
-    // public function cars()
-    // {
-    //     return $this->hasMany('App\Car');
-    // }
+    public function owner()
+    {
+        return $this->belongsTo(Owner::class);
+    }
 }

@@ -22,6 +22,9 @@ class CreateCars extends Migration
             $table->string('patente')->unique()->nullable();
             $table->string('color')->nullable();
 
+            $table->unsignedBigInteger('owner_id');
+            $table->foreign('owner_id')->references('id')->on('owners');
+
             $table->timestamps();
         });
     }
