@@ -14,6 +14,7 @@ class TransaccionController extends BaseController
         try {
             $data =  Transaccion::all();
             $collection = TransaccionCollection::collection($data);
+            return $collection;
             return $this->sendResponse(true, $collection, "List transactions");
         } catch (\Throwable $th) {
             return $this->sendResponse(false, $th, "Error");
@@ -42,9 +43,8 @@ class TransaccionController extends BaseController
     public function store(Request $request){
         $form = [
             'coche_id' => $request->coche_id,
-            'costo_total' => $request->costo_total,
-
-            'services' => $request->services
+            'costo_total' => 0,
+            'services_id' => $request->services_id
         ];
 
         

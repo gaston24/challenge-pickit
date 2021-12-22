@@ -13,6 +13,7 @@ class Transaccion extends Model
 
     protected $fillable = [
         'coche_id',
+        'services_id',
         'costo_total',
     ];
 }

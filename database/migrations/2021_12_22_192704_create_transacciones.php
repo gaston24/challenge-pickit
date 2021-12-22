@@ -18,6 +18,8 @@ class CreateTransacciones extends Migration
 
             $table->unsignedBigInteger('coche_id');
             $table->foreign('coche_id')->references('id')->on('cars');
+
+            $table->json('services_id');
             
             $table->float('costo_total');
 
