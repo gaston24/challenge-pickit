@@ -5,6 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Models\Car;
+use App\Models\TransactionDetail;
 use App\Models\Service;
 
 class TransaccionCollection extends JsonResource
@@ -21,13 +22,18 @@ class TransaccionCollection extends JsonResource
     public function toArray($request)
     {
         $carsCollection = Car::find($this->coche_id);
-        $servicesCollection = Service::where('id', $this->services_id)->get();
+        $details = TransactionDetail::
+        
+                                where('transaction_head_id', '>', 30)
+                                ->get();
+
+        // dump($details);
+
+        // $servicesCollection = Service::where('id', $details->services_id)->get();
 
         return [
             'id' => $this->id ? $this->id : "",
             'coche_id' => $this->coche_id ? $carsCollection : "",
-            'services_id' => $this->services_id ? $servicesCollection : "",
-            'costo_total' => $this->costo_total ? $this->costo_total : "",
         ];
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Resources\TransaccionCollection;
 use App\Models\Transaccion;
+use App\Models\TransactionDetail;
 use Illuminate\Support\Facades\Log;
 
 class TransaccionController extends BaseController
@@ -28,7 +29,6 @@ class TransaccionController extends BaseController
         $transaccionUpdate = Transaccion::find($id);
 
         $transaccionUpdate['coche_id'] = $request->coche_id;
-        $transaccionUpdate['costo_total'] = $request->costo_total;
 
         try {
             $transaccionUpdate->update();
@@ -41,16 +41,23 @@ class TransaccionController extends BaseController
     }
 
     public function store(Request $request){
-        $form = [
+        $formHead = [
             'coche_id' => $request->coche_id,
-            'costo_total' => 0,
-            'services_id' => $request->services_id
         ];
 
         
         try {
-            $model = Transaccion::create($form);
-            return $this->sendResponse(true, $model->id, 'The transaction has been created successfully');
+            $modelHead = Transaccion::create($formHead);
+
+            $formDetail = [
+                'transaction_head_id' => $modelHead->id,
+                'service_id' => $request->services_id,
+            ];
+
+            
+            $response = TransactionDetailController::storeArray($formDetail);
+            
+            return $this->sendResponse(true, $modelHead->id, 'The transaction has been created successfully');
         } catch (\Throwable $th) {
             Log::warning($th);
             return $this->sendResponse(false, $th, "Error");

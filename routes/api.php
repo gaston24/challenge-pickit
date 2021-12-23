@@ -7,6 +7,7 @@ use App\Http\Controllers\CarController;
 use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\ServicesController;
 use App\Http\Controllers\TransaccionController;
+use App\Http\Controllers\TransactionDetailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,3 +31,4 @@ Route::resource('/services', ServicesController::class);
 
 
 Route::resource('/transactions', TransaccionController::class);
+Route::resource('/transactionsDetails', TransactionDetailController::class);
